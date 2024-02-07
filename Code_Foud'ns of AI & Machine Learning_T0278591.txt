@@ -1,0 +1,351 @@
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.136516Z","iopub.execute_input":"2023-03-29T12:02:32.137477Z","iopub.status.idle":"2023-03-29T12:02:32.419339Z","shell.execute_reply.started":"2023-03-29T12:02:32.137426Z","shell.execute_reply":"2023-03-29T12:02:32.417138Z"}}
+import pandas as pd
+import seaborn as sns 
+import matplotlib.pyplot as plt
+survey = pd.read_csv("/kaggle/input/2021-new-coder-survey/2021 New Coder Survey.csv")
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.421586Z","iopub.execute_input":"2023-03-29T12:02:32.422033Z","iopub.status.idle":"2023-03-29T12:02:32.448563Z","shell.execute_reply.started":"2023-03-29T12:02:32.421986Z","shell.execute_reply":"2023-03-29T12:02:32.447449Z"}}
+survey.head()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.450335Z","iopub.execute_input":"2023-03-29T12:02:32.451095Z","iopub.status.idle":"2023-03-29T12:02:32.463857Z","shell.execute_reply.started":"2023-03-29T12:02:32.451042Z","shell.execute_reply":"2023-03-29T12:02:32.462741Z"}}
+survey.columns
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.466857Z","iopub.execute_input":"2023-03-29T12:02:32.467528Z","iopub.status.idle":"2023-03-29T12:02:32.526662Z","shell.execute_reply.started":"2023-03-29T12:02:32.467488Z","shell.execute_reply":"2023-03-29T12:02:32.525403Z"}}
+survey.info()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.528328Z","iopub.execute_input":"2023-03-29T12:02:32.529042Z","iopub.status.idle":"2023-03-29T12:02:32.536799Z","shell.execute_reply.started":"2023-03-29T12:02:32.528998Z","shell.execute_reply":"2023-03-29T12:02:32.535679Z"}}
+df.keys()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.538368Z","iopub.execute_input":"2023-03-29T12:02:32.539044Z","iopub.status.idle":"2023-03-29T12:02:32.569454Z","shell.execute_reply.started":"2023-03-29T12:02:32.539005Z","shell.execute_reply":"2023-03-29T12:02:32.568267Z"}}
+df = pd.DataFrame(columns=['Education','Age','Gender','Area','Income', 'StudyWeekHrs'])
+df['Education'] = survey.iloc[:, 32]
+df['Age'] = survey.iloc[:, 23]
+df['Gender'] = survey.iloc[:, 24]
+df['Area'] = survey.iloc[:, 26]
+df['Income'] = survey.iloc[:, 22]
+df['StudyWeekHrs'] = survey.iloc[:, 8]
+df
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.570859Z","iopub.execute_input":"2023-03-29T12:02:32.571555Z","iopub.status.idle":"2023-03-29T12:02:32.633599Z","shell.execute_reply.started":"2023-03-29T12:02:32.571516Z","shell.execute_reply":"2023-03-29T12:02:32.632481Z"}}
+import pandas as pd
+df = df.dropna()
+df.to_csv('cleaned_data.csv', index=False)
+df
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.635306Z","iopub.execute_input":"2023-03-29T12:02:32.635696Z","iopub.status.idle":"2023-03-29T12:02:32.904971Z","shell.execute_reply.started":"2023-03-29T12:02:32.635642Z","shell.execute_reply":"2023-03-29T12:02:32.903663Z"}}
+import pandas as pd
+survey = pd.read_csv("/kaggle/input/2021-new-coder-survey/2021 New Coder Survey.csv")
+survey2 = survey.iloc[:, [32, 23, 24, 26, 22, 8]]
+survey2 = survey2.dropna()
+print(survey2.head())
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.907113Z","iopub.execute_input":"2023-03-29T12:02:32.907589Z","iopub.status.idle":"2023-03-29T12:02:32.920788Z","shell.execute_reply.started":"2023-03-29T12:02:32.907546Z","shell.execute_reply":"2023-03-29T12:02:32.919437Z"}}
+count = df['Area'].value_counts().to_frame().reset_index()
+count.columns = ['Area', 'Count']
+print(count)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.926638Z","iopub.execute_input":"2023-03-29T12:02:32.927128Z","iopub.status.idle":"2023-03-29T12:02:32.936542Z","shell.execute_reply.started":"2023-03-29T12:02:32.927097Z","shell.execute_reply":"2023-03-29T12:02:32.935395Z"}}
+count = df['Education'].value_counts().to_frame().reset_index()
+count.columns = ['Education', 'Count']
+print(count)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.938252Z","iopub.execute_input":"2023-03-29T12:02:32.939011Z","iopub.status.idle":"2023-03-29T12:02:32.959191Z","shell.execute_reply.started":"2023-03-29T12:02:32.938950Z","shell.execute_reply":"2023-03-29T12:02:32.957987Z"}}
+count = df['StudyWeekHrs'].value_counts().to_frame().reset_index()
+count.columns = ['StudyWeekHrs', 'Count']
+print(count)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.960895Z","iopub.execute_input":"2023-03-29T12:02:32.961996Z","iopub.status.idle":"2023-03-29T12:02:32.979560Z","shell.execute_reply.started":"2023-03-29T12:02:32.961933Z","shell.execute_reply":"2023-03-29T12:02:32.978235Z"}}
+count = df['Age'].value_counts().to_frame().reset_index()
+count.columns = ['Age', 'Count']
+print(count)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.981321Z","iopub.execute_input":"2023-03-29T12:02:32.982181Z","iopub.status.idle":"2023-03-29T12:02:32.998257Z","shell.execute_reply.started":"2023-03-29T12:02:32.982126Z","shell.execute_reply":"2023-03-29T12:02:32.996943Z"}}
+count = df['Gender'].value_counts().to_frame().reset_index()
+count.columns = ['Gender', 'Count']
+print(count)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:32.999824Z","iopub.execute_input":"2023-03-29T12:02:33.000698Z","iopub.status.idle":"2023-03-29T12:02:33.013298Z","shell.execute_reply.started":"2023-03-29T12:02:33.000650Z","shell.execute_reply":"2023-03-29T12:02:33.012029Z"}}
+Edmode = df['Education'].mode()[0]
+df['Education'].fillna(Edmode,inplace=True)
+df['Education'].unique()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.014899Z","iopub.execute_input":"2023-03-29T12:02:33.015754Z","iopub.status.idle":"2023-03-29T12:02:33.029679Z","shell.execute_reply.started":"2023-03-29T12:02:33.015714Z","shell.execute_reply":"2023-03-29T12:02:33.028519Z"}}
+colour1_counts = df['StudyWeekHrs'].value_counts().to_frame().reset_index()
+colour1_counts.columns = ['StudyWeekHrs', 'Count']
+print(colour1_counts)
+pd.set_option('display.max_rows', 1000)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.030995Z","iopub.execute_input":"2023-03-29T12:02:33.031416Z","iopub.status.idle":"2023-03-29T12:02:33.051634Z","shell.execute_reply.started":"2023-03-29T12:02:33.031381Z","shell.execute_reply":"2023-03-29T12:02:33.050573Z"}}
+df_clean = df.dropna() 
+df_clean = df_clean[df_clean['Age'] > 0]
+print(df_clean)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.053334Z","iopub.execute_input":"2023-03-29T12:02:33.054086Z","iopub.status.idle":"2023-03-29T12:02:33.080449Z","shell.execute_reply.started":"2023-03-29T12:02:33.054050Z","shell.execute_reply":"2023-03-29T12:02:33.079328Z"}}
+import numpy as np
+age_groups = {
+    'Children' : range(0,13),
+    'Teenager' : range(13,19),
+    'Adult' : range(19,50),
+    'Senior': range(50,120)
+}
+df['Age Group'] = np.nan
+
+for group, age_range in age_groups.items():
+    df.loc[df['Age'].isin(age_range), 'Age Group'] = group
+df_clean['Age'] = df['Age Group']
+df_clean[['Age','Income']]
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.082257Z","iopub.execute_input":"2023-03-29T12:02:33.083013Z","iopub.status.idle":"2023-03-29T12:02:33.103760Z","shell.execute_reply.started":"2023-03-29T12:02:33.082972Z","shell.execute_reply":"2023-03-29T12:02:33.102637Z"}}
+Edmode = df['Gender'].mode()[0]
+df['Gender'].fillna(Edmode,inplace = True)
+df['Gender'].unique()
+df_clean['Gender'] = df['Gender']
+df_clean[['Gender','Income']]
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.105282Z","iopub.execute_input":"2023-03-29T12:02:33.105888Z","iopub.status.idle":"2023-03-29T12:02:33.131470Z","shell.execute_reply.started":"2023-03-29T12:02:33.105845Z","shell.execute_reply":"2023-03-29T12:02:33.130270Z"}}
+Edmode = df['Gender'].mode()[0]
+df['Gender'].fillna(Edmode,inplace = True)
+df['Gender'].unique()
+df_clean['Gender'] = df['Gender']
+df_clean[['Education','Age','Gender','Area','Income', 'StudyWeekHrs']]
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.133158Z","iopub.execute_input":"2023-03-29T12:02:33.133867Z","iopub.status.idle":"2023-03-29T12:02:33.144031Z","shell.execute_reply.started":"2023-03-29T12:02:33.133827Z","shell.execute_reply":"2023-03-29T12:02:33.142524Z"}}
+df_clean['Gender'].unique()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.146293Z","iopub.execute_input":"2023-03-29T12:02:33.146740Z","iopub.status.idle":"2023-03-29T12:02:33.413977Z","shell.execute_reply.started":"2023-03-29T12:02:33.146702Z","shell.execute_reply":"2023-03-29T12:02:33.412908Z"}}
+import seaborn as sns   
+sns.countplot(y=df['Education'], data=survey)
+plt.xlabel("Count")
+plt.ylabel("Education")
+plt.show()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.415777Z","iopub.execute_input":"2023-03-29T12:02:33.416574Z","iopub.status.idle":"2023-03-29T12:02:33.612077Z","shell.execute_reply.started":"2023-03-29T12:02:33.416530Z","shell.execute_reply":"2023-03-29T12:02:33.610918Z"}}
+df['Age'].plot(kind='box', fontsize=15)
+plt.title('Age', fontsize=18)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.613880Z","iopub.execute_input":"2023-03-29T12:02:33.614667Z","iopub.status.idle":"2023-03-29T12:02:33.801311Z","shell.execute_reply.started":"2023-03-29T12:02:33.614613Z","shell.execute_reply":"2023-03-29T12:02:33.800519Z"}}
+plt.boxplot(x=df['Age'], vert=False)
+plt.title('Age', fontsize=15)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.803055Z","iopub.execute_input":"2023-03-29T12:02:33.803796Z","iopub.status.idle":"2023-03-29T12:02:33.980022Z","shell.execute_reply.started":"2023-03-29T12:02:33.803755Z","shell.execute_reply":"2023-03-29T12:02:33.978400Z"}}
+import matplotlib.pyplot as plt
+
+age_bins = [13, 19, 25, 35, 45, 55, 65, 120]
+age_labels = ['13-18', '19-24', '25-34', '35-44', '45-54', '55-64', '65+']
+
+age_counts = pd.cut(df['Age'], bins=age_bins, labels=age_labels).value_counts()
+total_respondents = age_counts.sum()
+age_percentages = age_counts / total_respondents * 100
+
+plt.pie(age_counts, labels=age_labels, autopct='%1.1f%%')
+plt.title('Age Distribution')
+plt.show()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.982359Z","iopub.execute_input":"2023-03-29T12:02:33.983159Z","iopub.status.idle":"2023-03-29T12:02:33.994777Z","shell.execute_reply.started":"2023-03-29T12:02:33.983116Z","shell.execute_reply":"2023-03-29T12:02:33.993000Z"}}
+country_counts = df['Area'].value_counts()
+print(country_counts)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:33.997090Z","iopub.execute_input":"2023-03-29T12:02:33.997536Z","iopub.status.idle":"2023-03-29T12:02:34.221847Z","shell.execute_reply.started":"2023-03-29T12:02:33.997493Z","shell.execute_reply":"2023-03-29T12:02:34.220787Z"}}
+import matplotlib.pyplot as plt
+counts = df_clean['Area'].value_counts()
+plt.pie(counts.values, labels=counts.index, autopct='%1.1f%%')
+plt.title('Area')
+plt.show()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:34.223375Z","iopub.execute_input":"2023-03-29T12:02:34.224418Z","iopub.status.idle":"2023-03-29T12:02:34.793242Z","shell.execute_reply.started":"2023-03-29T12:02:34.224381Z","shell.execute_reply":"2023-03-29T12:02:34.790214Z"}}
+import seaborn as sns   
+sns.countplot(y=df['Income'], data=survey)
+plt.xlabel("count")
+plt.ylabel("income")
+plt.show()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:34.799638Z","iopub.execute_input":"2023-03-29T12:02:34.799939Z","iopub.status.idle":"2023-03-29T12:02:34.807870Z","shell.execute_reply.started":"2023-03-29T12:02:34.799909Z","shell.execute_reply":"2023-03-29T12:02:34.806739Z"}}
+df["Income"].unique()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:34.809666Z","iopub.execute_input":"2023-03-29T12:02:34.810226Z","iopub.status.idle":"2023-03-29T12:02:34.834971Z","shell.execute_reply.started":"2023-03-29T12:02:34.810099Z","shell.execute_reply":"2023-03-29T12:02:34.834008Z"}}
+df_clean = df.dropna(subset=["Income"]) 
+df_clean.head()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:34.836552Z","iopub.execute_input":"2023-03-29T12:02:34.836942Z","iopub.status.idle":"2023-03-29T12:02:34.844732Z","shell.execute_reply.started":"2023-03-29T12:02:34.836902Z","shell.execute_reply":"2023-03-29T12:02:34.843491Z"}}
+print(df_clean["Income"].unique())
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:34.847123Z","iopub.execute_input":"2023-03-29T12:02:34.847584Z","iopub.status.idle":"2023-03-29T12:02:34.860156Z","shell.execute_reply.started":"2023-03-29T12:02:34.847545Z","shell.execute_reply":"2023-03-29T12:02:34.858903Z"}}
+df_clean = df_clean[df_clean["Income"] != 'I don’t know']
+print(df_clean["Income"].unique())
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:34.862102Z","iopub.execute_input":"2023-03-29T12:02:34.862562Z","iopub.status.idle":"2023-03-29T12:02:34.874016Z","shell.execute_reply.started":"2023-03-29T12:02:34.862503Z","shell.execute_reply":"2023-03-29T12:02:34.872654Z"}}
+df_clean = df_clean[df_clean["Income"] != "I don't want to answer"]
+print(df_clean["Income"].unique())
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:34.875471Z","iopub.execute_input":"2023-03-29T12:02:34.876795Z","iopub.status.idle":"2023-03-29T12:02:34.887738Z","shell.execute_reply.started":"2023-03-29T12:02:34.876755Z","shell.execute_reply":"2023-03-29T12:02:34.886625Z"}}
+df_clean = df_clean[df_clean["Income"] != 'None']
+print(df_clean["Income"].unique())
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:34.889785Z","iopub.execute_input":"2023-03-29T12:02:34.890241Z","iopub.status.idle":"2023-03-29T12:02:34.923046Z","shell.execute_reply.started":"2023-03-29T12:02:34.890200Z","shell.execute_reply":"2023-03-29T12:02:34.920940Z"}}
+from sklearn.preprocessing import OrdinalEncoder
+income_level_order = [[
+                       'Under $1,000',
+                       '$1,000 to $2,999',
+                       '$3,000 to $4,999',
+                       '$5,000 to $6,999', 
+                       '$7,000 to $9,999',
+                       '$10,000 to $14,999',
+                       '$15,000 to $19,999',
+                       '$20,000 to $24,999',
+                       '$25,000 to $29,999',
+                       '$30,000 to $34,999', 
+                       '$35,000 to $39,999',
+                       '$40,000 to $49,999',
+                       '$50,000 to $59,999',
+                       '$60,000 to $74,999',
+                       '$75,000 to $89,999',
+                       '$90,000 to $119,999',
+                       '$120,000 to $159,999',
+                       '$160,000 to $199,999', 
+                       '$200,000 to $249,999',
+                       '$250,000 or over',]] 
+from sklearn.preprocessing import OrdinalEncoder
+encoder = OrdinalEncoder(categories = income_level_order)  
+df_clean['IncomeLevel'] = encoder.fit_transform(df_clean[['Income']])
+df_clean
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:34.924643Z","iopub.execute_input":"2023-03-29T12:02:34.926762Z","iopub.status.idle":"2023-03-29T12:02:34.950933Z","shell.execute_reply.started":"2023-03-29T12:02:34.926718Z","shell.execute_reply":"2023-03-29T12:02:34.949962Z"}}
+df_clean['HighIncome'] = df_clean['IncomeLevel'].apply(lambda x:0 if x < 9 else 1)
+df_clean.head()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:34.953075Z","iopub.execute_input":"2023-03-29T12:02:34.953844Z","iopub.status.idle":"2023-03-29T12:02:35.285907Z","shell.execute_reply.started":"2023-03-29T12:02:34.953804Z","shell.execute_reply":"2023-03-29T12:02:35.284924Z"}}
+sns.countplot(y='IncomeLevel', data=df_clean)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:35.287380Z","iopub.execute_input":"2023-03-29T12:02:35.288041Z","iopub.status.idle":"2023-03-29T12:02:35.313649Z","shell.execute_reply.started":"2023-03-29T12:02:35.287996Z","shell.execute_reply":"2023-03-29T12:02:35.312043Z"}}
+df_clean['HighIncome'] = df_clean['IncomeLevel'].apply(lambda x:0 if x < 9 else 1)
+df_clean.head()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:35.315211Z","iopub.execute_input":"2023-03-29T12:02:35.316302Z","iopub.status.idle":"2023-03-29T12:02:35.343520Z","shell.execute_reply.started":"2023-03-29T12:02:35.316235Z","shell.execute_reply":"2023-03-29T12:02:35.341947Z"}}
+df_clean['LowIncome'] = df_clean['IncomeLevel'].apply(lambda x:0 if x > 9 else 1)
+df_clean.head()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:35.345446Z","iopub.execute_input":"2023-03-29T12:02:35.345839Z","iopub.status.idle":"2023-03-29T12:02:35.365013Z","shell.execute_reply.started":"2023-03-29T12:02:35.345800Z","shell.execute_reply":"2023-03-29T12:02:35.363722Z"}}
+df_clean.head()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:35.366689Z","iopub.execute_input":"2023-03-29T12:02:35.367722Z","iopub.status.idle":"2023-03-29T12:02:35.383388Z","shell.execute_reply.started":"2023-03-29T12:02:35.367683Z","shell.execute_reply":"2023-03-29T12:02:35.382423Z"}}
+df_cluster = df_clean[['Area','IncomeLevel']]
+df_cluster.head()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:35.385923Z","iopub.execute_input":"2023-03-29T12:02:35.386603Z","iopub.status.idle":"2023-03-29T12:02:35.398084Z","shell.execute_reply.started":"2023-03-29T12:02:35.386565Z","shell.execute_reply":"2023-03-29T12:02:35.397012Z"}}
+df_cluster2 = df_clean[['Area','LowIncome']]
+df_cluster2.head()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:35.399738Z","iopub.execute_input":"2023-03-29T12:02:35.400113Z","iopub.status.idle":"2023-03-29T12:02:35.416402Z","shell.execute_reply.started":"2023-03-29T12:02:35.400075Z","shell.execute_reply":"2023-03-29T12:02:35.415411Z"}}
+df_cluster3 = df_clean[['Area','HighIncome']]
+df_cluster3.head()
+
+# %% [code] {"execution":{"iopub.status.busy":"2023-03-29T12:02:35.418102Z","iopub.execute_input":"2023-03-29T12:02:35.418622Z","iopub.status.idle":"2023-03-29T12:02:35.435535Z","shell.execute_reply.started":"2023-03-29T12:02:35.418583Z","shell.execute_reply":"2023-03-29T12:02:35.434128Z"}}
+df_cluster = df_clean[['Area', 'Age', 'Gender', 'Education', 'Income', 'StudyWeekHrs']]
+df_cluster.head()
+
+# %% [code] {"execution":{"iopub.status.busy":"2023-03-29T12:02:35.437294Z","iopub.execute_input":"2023-03-29T12:02:35.437652Z","iopub.status.idle":"2023-03-29T12:02:35.457747Z","shell.execute_reply.started":"2023-03-29T12:02:35.437617Z","shell.execute_reply":"2023-03-29T12:02:35.457022Z"}}
+X_cluster_high = pd.get_dummies(df_cluster1) #HighInclome
+X_cluster_high.head()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:35.459119Z","iopub.execute_input":"2023-03-29T12:02:35.460240Z","iopub.status.idle":"2023-03-29T12:02:35.479700Z","shell.execute_reply.started":"2023-03-29T12:02:35.460198Z","shell.execute_reply":"2023-03-29T12:02:35.478477Z"}}
+X_cluster_low = pd.get_dummies(df_cluster3) #LowIncome
+X_cluster_low.head()
+
+# %% [code] {"execution":{"iopub.status.busy":"2023-03-29T12:02:35.481262Z","iopub.execute_input":"2023-03-29T12:02:35.481851Z","iopub.status.idle":"2023-03-29T12:02:37.165725Z","shell.execute_reply.started":"2023-03-29T12:02:35.481810Z","shell.execute_reply":"2023-03-29T12:02:37.164945Z"}}
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+import numpy as np
+
+wcss = []
+for i in range (1, 11):
+    kmeans = KMeans (n_clusters = i, init='k-means++', max_iter=300, n_init=10, random_state=13)
+    kmeans.fit(X_cluster_low)
+    wcss.append(kmeans.inertia_)
+
+plt.plot(range(1, 11), wcss) 
+plt.title('Elbow Method For Low Income') 
+plt.xlabel ('Number of Clusters') 
+plt.ylabel('Within-Cluster Sum of Squares') 
+plt.show()
+
+# %% [code] {"execution":{"iopub.status.busy":"2023-03-29T12:02:37.167022Z","iopub.execute_input":"2023-03-29T12:02:37.168206Z","iopub.status.idle":"2023-03-29T12:02:39.789091Z","shell.execute_reply.started":"2023-03-29T12:02:37.168165Z","shell.execute_reply":"2023-03-29T12:02:39.787946Z"}}
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+import numpy as np
+
+wcss = []
+for i in range (1, 11):
+    kmeans = KMeans (n_clusters = i, init='k-means++', max_iter=300, n_init=10, random_state=13)
+    kmeans.fit(X_cluster_high)
+    wcss.append(kmeans.inertia_)
+
+plt.plot(range(1, 11), wcss) 
+plt.title('Elbow Method For High Income') 
+plt.xlabel ('Number of Clusters') 
+plt.ylabel('Within-Cluster Sum of Squares') 
+plt.show()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:39.790709Z","iopub.execute_input":"2023-03-29T12:02:39.791112Z","iopub.status.idle":"2023-03-29T12:02:39.796337Z","shell.execute_reply.started":"2023-03-29T12:02:39.791070Z","shell.execute_reply":"2023-03-29T12:02:39.795017Z"}}
+from sklearn.cluster import KMeans
+km = KMeans(n_clusters=2)
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:39.797988Z","iopub.execute_input":"2023-03-29T12:02:39.798370Z","iopub.status.idle":"2023-03-29T12:02:40.494550Z","shell.execute_reply.started":"2023-03-29T12:02:39.798334Z","shell.execute_reply":"2023-03-29T12:02:40.493097Z"}}
+y_cluster = km.fit_predict(X_cluster)
+print(y_cluster[0:5])
+df_cluster['ClusterLabel'] = y_cluster 
+df_cluster.head()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:40.496921Z","iopub.execute_input":"2023-03-29T12:02:40.504348Z","iopub.status.idle":"2023-03-29T12:02:40.530082Z","shell.execute_reply.started":"2023-03-29T12:02:40.504284Z","shell.execute_reply":"2023-03-29T12:02:40.528488Z"}}
+import seaborn as sns
+sns.countplot(data=df_cluster1, x="ClusterLabel", hue="IncomeLevel")
+plt.legend(bbox_to_anchor=(1.0, 1.0))
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:40.531336Z","iopub.status.idle":"2023-03-29T12:02:40.532306Z","shell.execute_reply.started":"2023-03-29T12:02:40.532025Z","shell.execute_reply":"2023-03-29T12:02:40.532053Z"}}
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = df_clean
+
+data_gender = data['Gender']
+
+data_male = data_gender[data_gender == 'Male']
+data_female = data_gender[data_gender == 'Female']
+data_genderfluid = data_gender[data_gender == 'Genderfluid']
+data_prefer_not_to_say = data_gender[data_gender == 'Prefer not to say']
+data_nonbinary = data_gender[data_gender == 'Nonbinary']
+
+plt.figure(figsize=(10, 6))
+
+plt.hist(data_male, alpha=0.5, label='male')
+plt.hist(data_female, alpha=0.5, label='female')
+plt.hist(data_genderfluid, alpha=0.5, label='genderfluid')
+plt.hist(data_prefer_not_to_say, alpha=0.5, label='prefer not to say')
+plt.hist(data_nonbinary, alpha=0.5, label='nonbinary')
+
+plt.xlabel('Gender')
+plt.ylabel('Frequency')
+plt.title('Distribution of Gender')
+
+plt.legend()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:40.533849Z","iopub.status.idle":"2023-03-29T12:02:40.534726Z","shell.execute_reply.started":"2023-03-29T12:02:40.534448Z","shell.execute_reply":"2023-03-29T12:02:40.534474Z"}}
+import pandas as pd
+import matplotlib.pyplot as plt
+from pandas.plotting import scatter_matrix
+data = pd.read_csv('/kaggle/input/2021-new-coder-survey/2021 New Coder Survey.csv')
+cols = [23,7] 
+scatter_matrix(data.iloc[:, cols], figsize=(10,10), diagonal='hist')
+plt.show()
+
+# %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2023-03-29T12:02:40.536442Z","iopub.status.idle":"2023-03-29T12:02:40.537297Z","shell.execute_reply.started":"2023-03-29T12:02:40.537029Z","shell.execute_reply":"2023-03-29T12:02:40.537056Z"}}
+import matplotlib.pyplot as plt
+import pandas as pd
+df_clean = pd.read_csv('/kaggle/input/2021-new-coder-survey/2021 New Coder Survey.csv') 
+age = df_clean.iloc[:, 23] 
+work_hours = df_clean.iloc[:, 7]
+plt.scatter(age, work_hours, c=age, cmap='viridis')
+plt.title('Scatter plot')
+plt.colorbar()
+plt.show()
+
+# %% [code] {"jupyter":{"outputs_hidden":false}}
